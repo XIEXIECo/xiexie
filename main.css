@@ -432,18 +432,22 @@ span{
     white-space: nowrap;
   }
   
-  .videobg button {
-    font-family: jost_light;
-    top: 91%;
-    left: 50%;
-    padding: 38px 145px;
-    font-size: 2rem;
-    font-weight: 100;
-    white-space: nowrap;
-    backdrop-filter: blur(100px);
-    border-radius: 100px;
-    border: 2px solid white;
-  }
+.videobg button {
+  font-family: jost_light;
+  position: absolute;
+  top: 85%;           /* 相对屏幕高度 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2.5vh 6vw; /* 高度用 vh，宽度用 vw，自适应屏幕 */
+  font-size: 4vw;     /* 根据屏幕宽度缩放字体 */
+  font-weight: 100;
+  white-space: nowrap;
+  backdrop-filter: blur(45px);
+  border-radius: 10vw; /* 圆角也用相对单位 */
+  border: 0.2vw solid white;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
   #h2-1-imagebg{
     font-family: jost_light;
