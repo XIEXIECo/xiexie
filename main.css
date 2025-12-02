@@ -119,38 +119,47 @@ button, input[type="button"], input[type="submit"] {
 }
 
 /* ===================== HERO / VIDEO / IMAGE ===================== */
+/* ===================== HERO / VIDEO / IMAGE ===================== */
 .videobg, .imagebg {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+  height: 100vh; /* 每个视频全屏高度，可根据需要调整 */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;   /* 垂直排列 */
+  justify-content: flex-end; /* 标题 + 按钮靠下 */
+  align-items: center;       /* 水平居中 */
   overflow: hidden;
   text-align: center;
+  margin: 0;                 /* 消除默认间距 */
 }
 
 .video, .imagebg img {
+  position: absolute;       /* 视频背景覆盖整个容器 */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   filter: brightness(85%);
+  z-index: 0;               /* 背景层 */
+  display: block;
 }
 
 .videobg h2, .imagebg h2 {
   position: relative;
+  z-index: 1;
   color: white;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  z-index: 1;
-  margin-bottom: 1rem;
+  margin: 0;
+  margin-bottom: 1rem;     /* 标题与按钮间距 */
   font-size: 2rem;
 }
 
 .videobg button, .imagebg button {
   position: relative;
+  z-index: 1;
   font-family: jost_light;
   color: white;
   font-weight: 100;
@@ -162,7 +171,7 @@ button, input[type="button"], input[type="submit"] {
   padding: 1rem 2.5rem;
   font-size: 1rem;
   white-space: nowrap;
-  z-index: 1;
+  margin-bottom: 3rem;    /* 距离容器底部 */
   transition: 0.2s;
 }
 
@@ -170,6 +179,25 @@ button, input[type="button"], input[type="submit"] {
 .imagebg button:hover {
   box-shadow: inset 0 0 0 1px white;
 }
+
+/* ================ 手机竖屏响应 ================= */
+@media screen and (max-width: 600px){
+  .videobg, .imagebg {
+    height: 70vh;            /* 手机上视频稍低，避免空白 */
+    justify-content: flex-end;
+  }
+  .videobg h2, .imagebg h2 {
+    font-size: 4vw;
+    margin-bottom: 1.5vw;
+  }
+  .videobg button, .imagebg button {
+    font-size: 4vw;
+    padding: 2.5vh 6vw;
+    border-radius: 10vw;
+    margin-bottom: 5vw;
+  }
+}
+
 
 /* ===================== GRID / CARDS ===================== */
 .services h2 {
