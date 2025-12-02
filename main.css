@@ -3,12 +3,10 @@
   font-family: saveurSans;
   src: url(fonts/Saveur_sans.otf);
 }
-
 @font-face {
   font-family: jost;
   src: url(fonts/Jost.ttf);
 }
-
 @font-face {
   font-family: jost_light;
   src: url(fonts/Jost_light.ttf);
@@ -20,8 +18,26 @@ body {
   padding: 0;
   overflow-x: hidden;
   font-family: jost_light;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
+h1, h2, h3, h4, h5, h6, p, span, button, a {
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+}
+
+button, input[type="button"], input[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
+
+/* ===================== HR ===================== */
 .hr {
   border: none;
   border-top: 0.5px solid rgba(128, 128, 128, 0.42);
@@ -105,12 +121,14 @@ body {
 /* ===================== HERO / VIDEO / IMAGE ===================== */
 .videobg, .imagebg {
   position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  aspect-ratio: 16/9; /* 电脑默认 16:9 */
   overflow: hidden;
+  text-align: center;
 }
 
 .video, .imagebg img {
@@ -122,23 +140,17 @@ body {
 }
 
 .videobg h2, .imagebg h2 {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  position: relative;
   color: white;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
+  z-index: 1;
+  margin-bottom: 1rem;
+  font-size: 2rem;
 }
 
-.videobg h2 { top: 81%; font-size: 2rem; }
-.imagebg h2 { top: 77%; font-size: 2rem; }
-
 .videobg button, .imagebg button {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  position: relative;
   font-family: jost_light;
   color: white;
   font-weight: 100;
@@ -147,10 +159,11 @@ body {
   border: 1px solid white;
   border-radius: 30px;
   cursor: pointer;
-  transition: 0.2s;
   padding: 1rem 2.5rem;
   font-size: 1rem;
   white-space: nowrap;
+  z-index: 1;
+  transition: 0.2s;
 }
 
 .videobg button:hover,
@@ -194,6 +207,7 @@ body {
 
 .card-content {
   text-align: left;
+  padding: 1rem;
 }
 
 .card-content h1 {
@@ -301,7 +315,6 @@ span {
 .footer span {
   padding-left: 10px;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
   text-underline-offset: 6px;
 }
 
@@ -313,40 +326,32 @@ span {
   text-align: center;
 }
 
+/* ===================== MOBILE FOOTER & ACCORDION ===================== */
 .accordian-container {
   display: none;
 }
-
 .hr-hid {
   display: none;
 }
-
 .mobile-footer {
   display: none;
 }
 
 /* ===================== MEDIA QUERIES ===================== */
-/* 中屏设备 */
 @media screen and (max-width: 1024px){
   .column { flex: 1; padding: 0 2rem; }
   .cell { font-size: 12px; }
 }
 
-/* 手机竖屏 */
 @media screen and (max-width: 600px){
-
   body { width: 100%; }
 
-  /* 改成纵屏 9:16 */
   .videobg, .imagebg { aspect-ratio: 9/16; }
-
-  /* Hero 文本和按钮自适应 */
-  .videobg h2, .imagebg h2 { font-size: 4vw; }
+  .videobg h2, .imagebg h2 { font-size: clamp(16px, 4vw, 24px); }
   .videobg button, .imagebg button {
+    font-size: clamp(14px, 3.5vw, 20px);
     padding: 2.5vh 6vw;
-    font-size: 4vw;
     border-radius: 10vw;
-    border-width: 0.2vw;
   }
 
   .grid { grid-template-columns: 1fr; }
@@ -355,11 +360,9 @@ span {
   .card-content p { font-size: 3.5vw; }
   .card-btn { font-size: 4vw; }
 
-  /* 隐藏桌面元素，显示移动端元素 */
   .links, .footer { display: none; }
   .mobile-footer { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
-  /* Accordion */
   .accordian-container { display: contents; }
   .accordion {
     font-family: jost_light;
